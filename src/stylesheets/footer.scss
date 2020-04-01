@@ -1,0 +1,49 @@
+@import './common/color';
+
+footer {
+  display: block;
+  line-height: 1.42857143;
+  background-color: $gray_1;
+  font-size: 13px;
+  &:before {
+    content: '\2014 \00A0';
+  }
+  .head {
+    color: #fff;
+    background: #1e2339;
+    padding: 40px 0;
+  }
+  a,
+  li {
+    color: #ddd;
+  }
+  ul {
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 8px;
+    list-style: none;
+  }
+  .secure {
+    text-align: left;
+    li {
+      display: inline;
+      margin-right: 5px;
+    }
+  }
+  .tail {
+    background: #2d3653;
+    padding: 10px 0;
+    color: #ddd;
+  }
+  .col-md-4 {
+    margin-bottom: 30px;
+  }
+  h5 {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .col-md-12 {
+    text-align: center;
+  }
+}
