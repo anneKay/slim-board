@@ -4,35 +4,35 @@ import { withRouter } from 'react-router-dom';
 import Form from './Form';
 import Header from '../header';
 import Footer from '../footer/footer';
-// import {
-//   registerUser,
-//   signInUser
-// } from "../../store/config/redux-token-auth-config";
+import { loginUser } from '../../actions/authActions';
 
-const AuthenticationForm = props => {
+const AuthenticationForm = ({
+  action,
+  loginUser,
+  history,
+  formTitle,
+  formStructure,
+  buttonText,
+  data,
+}) => {
   const [formData, setFormData] = useState({});
-  const action = data => {
-    switch (props.action) {
-      case 'signup':
-        // return props.signupUser(data);
-        return 'signup';
+  const formAction = data => {
+    switch (action) {
+      // case 'signup':
+      //   return props.signupUser(data);
       case 'login':
-        // return props.signInUser(data);
-        return 'signin';
+        return loginUser(history, data);
       default:
         console.log('Something went wrong');
     }
   };
   const onSubmit = e => {
     e.preventDefault();
-    // action(formData)
-    //   .then(() => {
-    //     props.history.push("/");
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-    console.log('I just got submitted');
+    formAction(formData)
+      .then(() => {})
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -40,18 +40,19 @@ const AuthenticationForm = props => {
       <Header />
       <Form
         onSubmit={onSubmit}
-        formTitle={props.formTitle}
+        formTitle={formTitle}
         setFormData={setFormData}
-        formStructure={props.formStructure}
+        formStructure={formStructure}
         formData={formData}
-        buttonText={props.buttonText}
+        buttonText={buttonText}
       />
       <Footer />
     </>
   );
 };
 
-export default connect(
-  null,
-  // { registerUser, signInUser }
-)(withRouter(AuthenticationForm));
+const mapStateToProps = ({ auth }) => ({
+  data: auth,
+});
+
+export default connect(mapStateToProps, { loginUser })(withRouter(AuthenticationForm));

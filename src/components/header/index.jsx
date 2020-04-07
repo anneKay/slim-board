@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import appLogo from '../../assets/images/app-logo.png';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isLoggedIn } from '../../utils/helper';
 import '../../stylesheets/header.scss';
 
 const Header = () => {
@@ -15,9 +16,16 @@ const Header = () => {
         </div>
         <div className="HeaderLinks">
           <div className="AuthLinks">
-            <a href="/login">Login</a>
-            <a href="/signup">Signup</a>
+            {isLoggedIn ? (
+              <a href="/create"> Create a Story</a>
+            ) : (
+              <>
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+              </>
+            )}
           </div>
+
           <Button variant="outline-success"> Explore </Button>
           <div className="userProfile">
             <img></img>

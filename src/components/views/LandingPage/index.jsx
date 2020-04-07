@@ -8,10 +8,6 @@ import '../../../stylesheets/landing.scss';
 const LandingPage = () => (
   <>
     <Header />
-    {/* <div>
-    <h5>We offer you the right platform to collaborate and build the right things, find out how.</h5>
-    <Button variant="success"> Explore </Button>
-  </div> */}
     <section className="LandingHero">
       <div className="ContentArea">
         <h5>Manage Your Team Seamlessly With SlimBoard</h5>
@@ -24,18 +20,7 @@ const LandingPage = () => (
         <h4>Get Started:</h4>
         <div className="business-decisions__funded">
           <div className="RoundedCircle"> Plan</div>
-          {/* <img
-              src="testimonials/application-icon.png"
-              alt="form application"
-              className="business-decisions__icon"
-            /> */}
-          {/* <Image roundedCircle/> */}
           <div className="arrow-icon" />
-          {/* <img
-              src="testimonials/compareloans-icon.png"
-              alt="options"
-              className="business-decisions__icon"
-            /> */}
           <div className="RoundedCircle">Track</div>
           <div className="arrow-icon" />
           <div className="RoundedCircle">Deliver</div>

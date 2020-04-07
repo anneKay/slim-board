@@ -14,7 +14,7 @@ class CookieUtil {
 
   static setItem(name, value, days) {
     const maxAge = `max-age=${days * 24 * 60 * 60}`;
-    document.cookie = `${name}=${value};domain=http:localhost:3001;${maxAge};path=/`;
+    document.cookie = `${name}=${value};domain=localhost;${maxAge};path=/`;
   }
 
   static getItem(key) {

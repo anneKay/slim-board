@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import authReducer from './authReducer';
+import auth from './authReducer';
+import story from './storyReducer';
 
 const rootReducer = history =>
   combineReducers({
-    authReducer,
+    auth,
+    story,
     router: connectRouter(history),
   });
 

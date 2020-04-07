@@ -1,3 +1,5 @@
+import cookieUtil from './cookie';
+
 export const prepareQuery = (url, payload) => ({
   url: `https://test-archimides.free.beeceptor.com/${url}`,
   headers: {
@@ -5,5 +7,9 @@ export const prepareQuery = (url, payload) => ({
     'Content-Type': 'application/json',
   },
   data: JSON.stringify(payload),
-  withCredentials: true,
+  mode: 'cors',
 });
+
+export const isLoggedIn = () => cookieUtil.getItem('userData');
+
+export const isAdmin = cookieUtil.getItem('isAdminUser');

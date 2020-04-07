@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-
-import Input from './input';
-// import Button from "../shared/Button";
 import { Form, Button } from 'react-bootstrap';
 import '../../stylesheets/form.scss';
+import cookieUtil from '../../utils/cookie';
 
 const FormStructure = ({
   formStructure,
@@ -18,7 +16,13 @@ const FormStructure = ({
     formDataCopy[event.target.name] = event.target.value;
     setFormData(formDataCopy);
   };
-  const [isChecked, setIsChecked] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+
+  const displayLabel = () => {
+    cookieUtil.setItem('isAdminUser', isChecked, 30);
+    return isChecked ? 'Login As an Admin' : 'Login As a User';
+  };
+
   return (
     <div className="formContainer">
       <Form onSubmit={onSubmit}>
@@ -28,7 +32,7 @@ const FormStructure = ({
             type="switch"
             id="custom-switch"
             onChange={event => setIsChecked(event.currentTarget.checked)}
-            label={isChecked ? 'Login As an Admin' : 'Login As a User'}
+            label={displayLabel()}
           />
         )}
         {formStructure.map(f => (
