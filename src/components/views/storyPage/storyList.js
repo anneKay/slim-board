@@ -19,9 +19,9 @@ const StoryList = ({ fetchStories }) => {
 
   const showStoryByStatus = listHeader => {
     if (listHeader === 'Rejected') {
-      return storyData.filter(story => story.status === 'rejected');
+      return storyData.length && storyData.filter(story => story.status === 'rejected');
     } else if (listHeader === 'Approved') {
-      return storyData.filter(story => story.status === 'approved');
+      return storyData.length && storyData.filter(story => story.status === 'approved');
     } else {
       return storyData;
     }
@@ -36,16 +36,16 @@ const StoryList = ({ fetchStories }) => {
     if (!storyData) {
       async function fetchData() {
         const result = await fetchStories();
-        if (!result) {
-          setIsLoading('false');
-        }
+        if (!result) setIsLoading('false');
         if (isAdmin) {
           setStoryData(result);
           setNarrowedData(result);
           setIsLoading(false);
         } else {
-          setStoryData(result.filter(story => isUserStory(story)));
-          setNarrowedData(result);
+          if (result) {
+            setStoryData(result.filter(story => isUserStory(story)));
+            setNarrowedData(result);
+          }
           setIsLoading(false);
         }
       }

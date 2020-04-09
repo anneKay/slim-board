@@ -24,7 +24,7 @@ const StoryContainer = ({ stories }) => {
   };
   return (
     <>
-      {stories.length > 0 ? (
+      {stories && stories.length > 0 ? (
         stories.map((story, index) => (
           <div key={index}>
             <Card

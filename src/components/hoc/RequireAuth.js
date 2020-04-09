@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { isLoggedIn } from '../../utils/helper';
-import LandingPage from '../views/LandingPage';
+import { Redirect } from 'react-router-dom';
 import Header from '../header';
 import Footer from '../footer/footer';
 
@@ -10,7 +10,11 @@ const RequireAuth = Component => ({ response }) => {
   return (
     <>
       <Header />
-      {Object.keys(response.data).length > 0 || isLoggedIn ? <Component /> : <LandingPage />}
+      {Object.keys(response.data).length > 0 || isLoggedIn ? (
+        <Component />
+      ) : (
+        <Redirect to="/login" />
+      )}
       <Footer />
     </>
   );

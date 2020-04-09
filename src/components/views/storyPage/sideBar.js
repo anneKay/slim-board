@@ -23,7 +23,7 @@ const SideBar = ({ sideBarVisible, setSideBarVisible }) => {
       )}
       <div className={classNames('sideBarLink', { closedSideBarItems: !sideBarVisible })}>
         <span>
-          <FontAwesomeIcon icon="plus" size="1x" />
+          <FontAwesomeIcon icon="globe-europe" size="1x" />
         </span>
         <a href="/">Explore</a>
       </div>

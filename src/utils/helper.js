@@ -14,4 +14,5 @@ export const isLoggedIn = cookieUtil.getItem('userData');
 
 export const isAdmin = cookieUtil.getItem('isAdminUser') === 'true';
 
-export const userData = JSON.parse(cookieUtil.getItem('userData'));
+export const userData =
+  cookieUtil.getItem('userData') && JSON.parse(cookieUtil.getItem('userData'));
