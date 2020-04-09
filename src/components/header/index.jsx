@@ -30,7 +30,6 @@ const Header = () => {
           </div>
 
           <Button variant="outline-success"> Explore </Button>
-          {console.log(userData, 'from header')}
           {isLoggedIn && window.location.pathname !== '/login' && (
             <div className="avatar">
               <img

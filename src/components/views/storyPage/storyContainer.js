@@ -4,7 +4,6 @@ import StoryDetails from './storyDetailsModal';
 import '../../../stylesheets/story/storycontainer.scss';
 
 const StoryContainer = ({ stories }) => {
-  console.log(stories, 'the guys from story container');
   const [show, setShow] = useState(false);
   const [storyStatus, setStoryStatus] = useState('');
 

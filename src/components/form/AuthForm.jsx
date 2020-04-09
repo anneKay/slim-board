@@ -39,7 +39,6 @@ const AuthenticationForm = ({
       .then(data => {
         setIsLoading(false);
         history.push('/');
-        console.log(data, '>>>>>>>data');
       })
       .catch(() => {
         setIsLoading(false);
