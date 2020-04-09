@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import appLogo from '../../assets/images/app-logo.png';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { isLoggedIn, isAdmin } from '../../utils/helper';
+import { isLoggedIn, isAdmin, userData } from '../../utils/helper';
 import '../../stylesheets/header.scss';
 
 const Header = () => {
@@ -18,8 +18,7 @@ const Header = () => {
         </div>
         <div className="HeaderLinks">
           <div className="AuthLinks">
-            {console.log(isLoggedIn, 'checking out isl0ggedin')}
-            {isLoggedIn && window.location.path !== '/login' && !isAdmin && (
+            {isLoggedIn && window.location.pathname !== '/login' && !isAdmin && (
               <a href="/create"> Create a Story</a>
             )}
             {!isLoggedIn && (
@@ -31,9 +30,17 @@ const Header = () => {
           </div>
 
           <Button variant="outline-success"> Explore </Button>
-          <div className="userProfile">
-            <img></img>
-          </div>
+          {console.log(userData, 'from header')}
+          {isLoggedIn && window.location.pathname !== '/login' && (
+            <div className="avatar">
+              <img
+                src={
+                  'https://res.cloudinary.com/blackincode/image/upload/v1536160812/download_dfarj8.png'
+                }
+              ></img>{' '}
+              <p>{userData.userRoles[0]}</p>
+            </div>
+          )}
         </div>
         <div className="mobileNav">
           {mobileNavVisible ? (

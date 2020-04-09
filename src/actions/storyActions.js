@@ -40,22 +40,23 @@ export const setCreateStoryFailure = payload => ({
   payload,
 });
 
+const controller = new AbortController();
 /**
  * @description Makes API call to create a new ticket
  * @returns {Object} - story details
  */
-export const createStory = (history, payload) => async dispatch => {
-  console.log(payload, '>>>>>>>>>.');
-  // try {
-  //   const result = await fetchData(prepareQuery('api/createStory', payload), 'POST');
-  //   if (result.status === 200 && result.data) {
-  //     dispatch(setCreateStorySuccess(result.data));
-  //     history.push('/');
-  //     return result.data;
-  //   }
-  // } catch (error) {
-  //   dispatch(setCreateStoryFailure(error));
-  // }
+export const createStory = payload => async dispatch => {
+  try {
+    const result = await fetchData(prepareQuery('api/createStory', payload), 'POST', {
+      signal: controller.signal,
+    });
+    if (result && result.data) {
+      dispatch(setCreateStorySuccess(result.data));
+      return result.data;
+    }
+  } catch (error) {
+    dispatch(setCreateStoryFailure(error));
+  }
 };
 
 /**
@@ -67,7 +68,6 @@ export const fetchStories = history => async dispatch => {
     const result = await fetchData(prepareQuery('api/getStories'));
     if (result.status === 200 && result.data) {
       dispatch(setGetStoriesSuccess(result.data));
-      history.push('/');
       return result.data;
     }
   } catch (error) {

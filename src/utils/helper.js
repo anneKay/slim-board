@@ -12,4 +12,6 @@ export const prepareQuery = (url, payload) => ({
 
 export const isLoggedIn = cookieUtil.getItem('userData');
 
-export const isAdmin = cookieUtil.getItem('isAdminUser');
+export const isAdmin = cookieUtil.getItem('isAdminUser') === 'true';
+
+export const userData = JSON.parse(cookieUtil.getItem('userData'));

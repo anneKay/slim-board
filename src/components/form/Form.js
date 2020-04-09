@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, InputGroup } from 'react-bootstrap';
+import { Form, Button, InputGroup, Alert } from 'react-bootstrap';
 import '../../stylesheets/form.scss';
 import cookieUtil from '../../utils/cookie';
 
@@ -14,8 +14,6 @@ const FormStructure = ({
   const handleChange = event => {
     const formDataCopy = { ...formData };
     formDataCopy[event.target.name] = event.target.value;
-    console.log(formDataCopy, 'the form data');
-    console.log(event.target);
     setFormData(formDataCopy);
   };
   const [isChecked, setIsChecked] = useState(false);
@@ -61,8 +59,8 @@ const FormStructure = ({
               <InputGroup.Text id="inputGroupPrepend">$</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
-              type="text"
-              placeholder="Input story cost"
+              type="number"
+              placeholder="Input a number to show story cost"
               aria-describedby="inputGroupPrepend"
               name="cost"
               onChange={handleChange}

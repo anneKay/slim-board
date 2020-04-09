@@ -6,7 +6,6 @@ import '../../../stylesheets/story/story-details.scss';
 const StoryDetails = ({ story, show, handleShow, handleClose }) => {
   return (
     <>
-      {console.log(isAdmin)}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{story.description}</Modal.Title>

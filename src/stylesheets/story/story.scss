@@ -97,4 +97,8 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   min-width: 500px;
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+  }
 }

@@ -4,6 +4,7 @@ import StoryDetails from './storyDetailsModal';
 import '../../../stylesheets/story/storycontainer.scss';
 
 const StoryContainer = ({ stories }) => {
+  console.log(stories, 'the guys from story container');
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -21,8 +22,8 @@ const StoryContainer = ({ stories }) => {
   return (
     <>
       {stories.length > 0 ? (
-        stories.map(story => (
-          <div>
+        stories.map((story, index) => (
+          <div key={index}>
             <Card border={showBorderColor(story.status)} onClick={handleShow}>
               <Card.Header as="h5">{story.description}</Card.Header>
               <Card.Body>

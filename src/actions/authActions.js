@@ -23,58 +23,21 @@ export const setUserLoginFailure = payload => ({
 });
 
 /**
- * @description Dispatch an action to update the store on
- * successful user signup
- */
-export const setUserSignupSuccess = payload => ({
-  type: actionTypes.SIGNUP_SUCCESS,
-  payload,
-});
-
-/**
- * @description Dispatch an action to update the store on
- * successful user signup
- */
-export const setUserSignupFailure = payload => ({
-  type: actionTypes.SIGNUP_FAILURE,
-  payload,
-});
-
-/**
  * @description Makes API call to log a user into the app
  * @returns {Object} - user details
  */
 export const loginUser = (history, payload) => async dispatch => {
-  console.log(payload);
-  // try {
-  //   const isAdmin = CookieUtil.getItem('isAdminUser');
-  //   const url = isAdmin === 'true' ? 'admin-login' : 'login';
-  //   const result = await fetchData(prepareQuery(`api/${url}`, payload), 'POST');
-  //   if (result.status === 200 && result.data) {
-  //     cookieStore.setItem('userData', JSON.stringify(result.data), 30);
-  //     dispatch(setUserLoginSuccess(result.data));
-  //     history.push('/');
-  //     return result.data;
-  //   }
-  // } catch (error) {
-  //   dispatch(setUserLoginFailure(error));
-  // }
-};
-
-/**
- * @description Makes API call to log a user into the app
- * @returns {Object} - user details
- */
-export const SignupUser = (history, payload) => async dispatch => {
   try {
-    const result = await fetchData(prepareQuery('api/signup', payload), 'POST');
+    const isAdmin = CookieUtil.getItem('isAdminUser');
+    const url = isAdmin === 'true' ? 'admin-login' : 'login';
+    const result = await fetchData(prepareQuery(`api/${url}`, payload), 'POST');
     if (result.status === 200 && result.data) {
-      cookieStore.setItem('userData', result.data, 30);
-      dispatch(setUserSignupSuccess(result.data));
-      history.push('/dashboard');
+      cookieStore.setItem('userData', JSON.stringify(result.data), 30);
+      dispatch(setUserLoginSuccess(result.data));
       return result.data;
     }
   } catch (error) {
-    dispatch(setUserSignupFailure(error));
+    dispatch(setUserLoginFailure(error));
+    return error;
   }
 };

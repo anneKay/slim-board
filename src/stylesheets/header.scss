@@ -37,7 +37,7 @@
   }
   .HeaderLinks {
     display: flex;
-    width: 220px;
+    width: 300px;
     padding-top: 10px;
     @media (max-width: 950px) {
       display: none;
@@ -60,6 +60,18 @@
     }
     .btn-outline-success {
       padding: 0 15px;
+    }
+    .avatar {
+      display: flex;
+      margin: 0 0 0 13px;
+      img {
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+      }
+      p {
+        margin: 5px 0 0 5px;
+      }
     }
   }
   .mobileNav {
