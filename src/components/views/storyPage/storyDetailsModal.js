@@ -1,16 +1,43 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Modal, Button, Alert } from 'react-bootstrap';
 import { isAdmin } from '../../../utils/helper';
 import '../../../stylesheets/story/story-details.scss';
 
-const StoryDetails = ({ story, show, handleShow, handleClose }) => {
+const StoryDetails = ({ story, show, handleShow, handleClose, storyStatus, setStoryStatus }) => {
+  const [status, setStatus] = useState(story.status);
+  const [open, setOpen] = useState(false);
+
+  const handleApproveAction = () => {
+    setStatus('approved');
+    setOpen(true);
+    setStoryStatus('approved');
+  };
+  const handleRejectAction = () => {
+    setStatus('rejected');
+    setOpen(true);
+    setStoryStatus('rejected');
+  };
+
+  const hideModal = () => {
+    handleClose();
+    setOpen(false);
+  };
+
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={hideModal}>
+        {open && (
+          <Alert variant="success" onClose={() => setOpen(false)}>
+            <p>Story has been successfully {status}</p>
+          </Alert>
+        )}
         <Modal.Header closeButton>
           <Modal.Title>{story.description}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h5>Status</h5>
+          <p>{status}</p>
+          <hr />
           <h5>Summary</h5>
           <p>{story.summary}</p>
           <hr />
@@ -25,10 +52,10 @@ const StoryDetails = ({ story, show, handleShow, handleClose }) => {
         </Modal.Body>
         {isAdmin ? (
           <Modal.Footer>
-            <Button className="adminAction" variant="danger">
+            <Button onClick={handleRejectAction} className="adminAction" variant="danger">
               Reject
             </Button>
-            <Button className="adminAction" variant="success">
+            <Button onClick={handleApproveAction} className="adminAction" variant="success">
               Approve
             </Button>
           </Modal.Footer>

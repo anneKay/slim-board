@@ -6,8 +6,11 @@ import '../../../stylesheets/story/storycontainer.scss';
 const StoryContainer = ({ stories }) => {
   console.log(stories, 'the guys from story container');
   const [show, setShow] = useState(false);
+  const [storyStatus, setStoryStatus] = useState('');
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
 
   const showBorderColor = status => {
@@ -24,7 +27,10 @@ const StoryContainer = ({ stories }) => {
       {stories.length > 0 ? (
         stories.map((story, index) => (
           <div key={index}>
-            <Card border={showBorderColor(story.status)} onClick={handleShow}>
+            <Card
+              border={showBorderColor(storyStatus.length > 0 ? storyStatus : story.status)}
+              onClick={handleShow}
+            >
               <Card.Header as="h5">{story.description}</Card.Header>
               <Card.Body>
                 <Card.Text>{story.summary}</Card.Text>
@@ -37,6 +43,8 @@ const StoryContainer = ({ stories }) => {
               handleClose={handleClose}
               handleShow={handleShow}
               setShow={setShow}
+              setStoryStatus={setStoryStatus}
+              storyStatus={storyStatus}
             />
           </div>
         ))
