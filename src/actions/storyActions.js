@@ -45,16 +45,17 @@ export const setCreateStoryFailure = payload => ({
  * @returns {Object} - story details
  */
 export const createStory = (history, payload) => async dispatch => {
-  try {
-    const result = await fetchData(prepareQuery('api/createStory', payload), 'POST');
-    if (result.status === 200 && result.data) {
-      dispatch(setCreateStorySuccess(result.data));
-      history.push('/');
-      return result.data;
-    }
-  } catch (error) {
-    dispatch(setCreateStoryFailure(error));
-  }
+  console.log(payload, '>>>>>>>>>.');
+  // try {
+  //   const result = await fetchData(prepareQuery('api/createStory', payload), 'POST');
+  //   if (result.status === 200 && result.data) {
+  //     dispatch(setCreateStorySuccess(result.data));
+  //     history.push('/');
+  //     return result.data;
+  //   }
+  // } catch (error) {
+  //   dispatch(setCreateStoryFailure(error));
+  // }
 };
 
 /**

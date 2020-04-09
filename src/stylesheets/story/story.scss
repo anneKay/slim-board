@@ -8,6 +8,8 @@
   grid-template-areas: 'sideBar storyListContainer storyListContainer storyListContainer storyListContainer';
   padding-top: 60px;
   width: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
   .sideBar {
     position: relative;
     background-color: $light_gray;
@@ -17,9 +19,18 @@
     -ms-grid-column: 1;
     grid-column: 1;
     -ms-grid-column-span: 1;
-    .createStory {
+    .sideBarLink {
+      cursor: pointer;
+      padding-bottom: 5px;
+      margin-bottom: 7px;
       &:hover {
         background-color: #fff;
+      }
+      a {
+        color: black;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
     p {
@@ -32,6 +43,7 @@
     .closeSideContainer {
       float: right;
       margin-right: -23px;
+      cursor: pointer;
     }
   }
   .closedSideBar {
@@ -53,17 +65,21 @@
       height: 50px;
       cursor: pointer;
       list-style: none;
+      padding-left: 5px;
       li {
         width: 33%;
         text-align: center;
-        height: 40px;
-        line-height: 2;
-        font-size: 18px;
+        height: 100%;
+        line-height: 2.7;
+        font-size: 16px;
         font-weight: 600;
         border-right: 1px solid $gray_1;
         &:last-of-type {
           border-right: none;
         }
+      }
+      .active {
+        background-color: $light_gray;
       }
     }
   }
@@ -80,4 +96,5 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  min-width: 500px;
 }

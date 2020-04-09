@@ -45,19 +45,20 @@ export const setUserSignupFailure = payload => ({
  * @returns {Object} - user details
  */
 export const loginUser = (history, payload) => async dispatch => {
-  try {
-    const isAdmin = CookieUtil.getItem('isAdminUser');
-    const url = isAdmin === 'true' ? 'admin-login' : 'login';
-    const result = await fetchData(prepareQuery(`api/${url}`, payload), 'POST');
-    if (result.status === 200 && result.data) {
-      cookieStore.setItem('userData', JSON.stringify(result.data), 30);
-      dispatch(setUserLoginSuccess(result.data));
-      history.push('/');
-      return result.data;
-    }
-  } catch (error) {
-    dispatch(setUserLoginFailure(error));
-  }
+  console.log(payload);
+  // try {
+  //   const isAdmin = CookieUtil.getItem('isAdminUser');
+  //   const url = isAdmin === 'true' ? 'admin-login' : 'login';
+  //   const result = await fetchData(prepareQuery(`api/${url}`, payload), 'POST');
+  //   if (result.status === 200 && result.data) {
+  //     cookieStore.setItem('userData', JSON.stringify(result.data), 30);
+  //     dispatch(setUserLoginSuccess(result.data));
+  //     history.push('/');
+  //     return result.data;
+  //   }
+  // } catch (error) {
+  //   dispatch(setUserLoginFailure(error));
+  // }
 };
 
 /**

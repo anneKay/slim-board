@@ -12,8 +12,9 @@ import Footer from '../footer/footer';
 const RequireAuth = Component => ({ response }) => {
   return (
     <>
+      {console.log(isLoggedIn, '>>>>>>>>>.')}
       <Header />
-      {response.data || isLoggedIn ? <Component /> : <LandingPage />}
+      {Object.keys(response.data).length > 0 || isLoggedIn ? <Component /> : <LandingPage />}
       <Footer />
     </>
   );

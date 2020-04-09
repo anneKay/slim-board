@@ -1,7 +1,5 @@
 import React from 'react';
-import { Button, Image } from 'react-bootstrap';
 import Header from '../../header';
-import Footer from '../../footer/footer';
 import teamLogo from '../../../assets/images/team.jpg';
 import '../../../stylesheets/landing.scss';
 
@@ -27,7 +25,6 @@ const LandingPage = () => (
         </div>
       </div>
     </section>
-    <Footer />
   </>
 );
 

@@ -16,15 +16,23 @@
     width: 80pxx;
     height: 60px;
     display: flex;
-    img {
-      height: 35px;
-      width: 35px;
-    }
-    h4 {
-      font-family: 'Courier New', Courier, monospace;
-      font-style: italic;
-      font-weight: bolder;
-      padding-top: 10px;
+    a {
+      display: flex;
+      cursor: pointer;
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+      img {
+        height: 35px;
+        width: 35px;
+      }
+      h4 {
+        font-family: 'Courier New', Courier, monospace;
+        font-style: italic;
+        font-weight: bolder;
+        padding-top: 10px;
+      }
     }
   }
   .HeaderLinks {

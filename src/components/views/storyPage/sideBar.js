@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
+import { isAdmin } from '../../../utils/helper';
 
 const SideBar = ({ sideBarVisible, setSideBarVisible }) => {
   return (
@@ -12,11 +13,19 @@ const SideBar = ({ sideBarVisible, setSideBarVisible }) => {
           onClick={() => setSideBarVisible(!sideBarVisible)}
         />
       </span>
-      <div className={classNames('createStory', { closedSideBarItems: !sideBarVisible })}>
+      {!isAdmin && (
+        <div className={classNames('sideBarLink', { closedSideBarItems: !sideBarVisible })}>
+          <span>
+            <FontAwesomeIcon icon="plus" size="1x" />
+          </span>
+          <a href="/create">Create Story</a>
+        </div>
+      )}
+      <div className={classNames('sideBarLink', { closedSideBarItems: !sideBarVisible })}>
         <span>
           <FontAwesomeIcon icon="plus" size="1x" />
         </span>
-        <p>Create Story</p>
+        <a href="/">Explore</a>
       </div>
     </section>
   );

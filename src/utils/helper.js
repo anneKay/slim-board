@@ -10,6 +10,6 @@ export const prepareQuery = (url, payload) => ({
   mode: 'cors',
 });
 
-export const isLoggedIn = () => cookieUtil.getItem('userData');
+export const isLoggedIn = cookieUtil.getItem('userData');
 
 export const isAdmin = cookieUtil.getItem('isAdminUser');

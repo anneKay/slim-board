@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import classNames from 'classnames';
 import StoryContainer from './storyContainer';
 import { fetchStories } from '../../../actions/storyActions';
 import cookieUtil from '../../../utils/cookie';
 
 const StoryList = ({ history, fetchStories, userDetails }) => {
   const [storyData, setStoryData] = useState(false);
-  const [narrowedData, setNarrowedData] = useState('');
+  const [isActive, setIsActive] = useState(0);
 
   const stories = [
     {
@@ -44,9 +45,10 @@ const StoryList = ({ history, fetchStories, userDetails }) => {
 
   const isUserStory = story => {
     const userData = JSON.parse(cookieUtil.getItem('userData'));
-    if (userData.userRoles[0] === 'Admin') return true;
+    if (userData.userRoles && userData.userRoles[0] === 'Admin') return true;
     return story.createdBy === userData.id;
   };
+  const [narrowedData, setNarrowedData] = useState(stories.filter(story => isUserStory(story)));
 
   const showStoryByStatus = listHeader => {
     if (listHeader === 'Rejected') {
@@ -56,6 +58,11 @@ const StoryList = ({ history, fetchStories, userDetails }) => {
     } else {
       return stories.filter(story => isUserStory(story));
     }
+  };
+
+  const setHeaderItem = (list, index) => {
+    setNarrowedData(showStoryByStatus(list));
+    setIsActive(index);
   };
 
   const getStoryList = () => {
@@ -82,8 +89,14 @@ const StoryList = ({ history, fetchStories, userDetails }) => {
   return (
     <div className="storyListContainer">
       <ul className="storyHeader">
-        {headerList.map(list => (
-          <li onClick={() => setNarrowedData(showStoryByStatus(list))}>{list}</li>
+        {headerList.map((list, index) => (
+          <li
+            key={index}
+            className={classNames({ active: isActive === index })}
+            onClick={() => setHeaderItem(list, index)}
+          >
+            {list}
+          </li>
         ))}
       </ul>
       <section className="storyCardWrapper">

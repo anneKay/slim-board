@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import appLogo from '../../assets/images/app-logo.png';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { isLoggedIn } from '../../utils/helper';
+import { isLoggedIn, isAdmin } from '../../utils/helper';
 import '../../stylesheets/header.scss';
 
 const Header = () => {
@@ -11,14 +11,18 @@ const Header = () => {
     <>
       <div className="HeaderContainer">
         <div className="appLogo">
-          <img src={appLogo} />
-          <h4>SlimBoard</h4>
+          <a href="/">
+            <img src={appLogo} />
+            <h4>SlimBoard</h4>
+          </a>
         </div>
         <div className="HeaderLinks">
           <div className="AuthLinks">
-            {isLoggedIn ? (
+            {console.log(isLoggedIn, 'checking out isl0ggedin')}
+            {isLoggedIn && window.location.path !== '/login' && !isAdmin && (
               <a href="/create"> Create a Story</a>
-            ) : (
+            )}
+            {!isLoggedIn && (
               <>
                 <a href="/login">Login</a>
                 <a href="/signup">Signup</a>
