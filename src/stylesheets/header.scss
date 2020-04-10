@@ -11,24 +11,33 @@
   padding: 10px 40px;
   box-shadow: 1px 1px 8px $light_gray;
   background-color: $white;
+  z-index: 5;
   .appLogo {
     width: 80pxx;
     height: 60px;
     display: flex;
-    img {
-      height: 35px;
-      width: 35px;
-    }
-    h4 {
-      font-family: 'Courier New', Courier, monospace;
-      font-style: italic;
-      font-weight: bolder;
-      padding-top: 10px;
+    a {
+      display: flex;
+      cursor: pointer;
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+      img {
+        height: 35px;
+        width: 35px;
+      }
+      h4 {
+        font-family: 'Courier New', Courier, monospace;
+        font-style: italic;
+        font-weight: bolder;
+        padding-top: 10px;
+      }
     }
   }
   .HeaderLinks {
     display: flex;
-    width: 220px;
+    width: 300px;
     padding-top: 10px;
     @media (max-width: 950px) {
       display: none;
@@ -49,8 +58,21 @@
         padding: 0 5px;
       }
     }
-    .btn-success {
-      padding-top: 0;
+    .btn-outline-success {
+      padding: 0 15px;
+    }
+    .avatar {
+      display: flex;
+      margin: 0 0 0 20px;
+      cursor: pointer;
+      img {
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+      }
+      p {
+        margin: 5px 0 0 5px;
+      }
     }
   }
   .mobileNav {
@@ -62,10 +84,11 @@
 }
 .displayMobileNav {
   width: 100%;
-  background-color: $light_gray;
+  background-color: #1e3856;
   position: fixed;
   top: 60px;
   bottom: 0;
+  z-index: 5;
   li {
     list-style: none;
     padding: 10px;

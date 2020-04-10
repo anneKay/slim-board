@@ -1,0 +1,99 @@
+@import '../common/color';
+
+.storyWrapper {
+  display: grid;
+  display: -ms-grid;
+  grid-template-columns: repeat(5, 1fr);
+  -ms-grid-columns: 1f 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'sideBar storyListContainer storyListContainer storyListContainer storyListContainer';
+  padding-top: 60px;
+  width: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  .sideBar {
+    position: relative;
+    background-color: $light_gray;
+    height: 100vh;
+    padding: 30px 15px 0 5px;
+    grid-area: sideBar;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-column-span: 1;
+    .sideBarLink {
+      cursor: pointer;
+      padding-bottom: 5px;
+      margin-bottom: 7px;
+      &:hover {
+        background-color: #fff;
+      }
+      a {
+        color: black;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    p {
+      display: inline-block;
+    }
+    span {
+      margin: 0 10px;
+      font-size: 20px;
+    }
+    .closeSideContainer {
+      float: right;
+      margin-right: -23px;
+      cursor: pointer;
+    }
+  }
+  .closedSideBar {
+    width: 7px;
+    grid-area: storyListContainer;
+  }
+  .closedSideBarItems {
+    display: none;
+  }
+  .storyListContainer {
+    grid-area: storyListContainer;
+    -ms-grid-column-span: 4;
+    height: 100vh;
+    @media (max-width: 565px) {
+      grid-area: unset;
+    }
+    .storyHeader {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      box-shadow: 1px 1px 8px #efedea;
+      height: 50px;
+      cursor: pointer;
+      list-style: none;
+      padding-left: 5px;
+      li {
+        width: 33%;
+        text-align: center;
+        height: 100%;
+        line-height: 2.7;
+        font-size: 16px;
+        font-weight: 600;
+        border-right: 1px solid $gray_1;
+        &:last-of-type {
+          border-right: none;
+        }
+      }
+      .active {
+        background-color: $light_gray;
+      }
+    }
+  }
+}
+.expandedStoryWrapper {
+  grid-template-areas: 'storyListContainer storyListContainer storyListContainer storyListContainer storyListContainer';
+}
+.storyCardWrapper {
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+    margin: 15px 0 10px 40%;
+  }
+}
