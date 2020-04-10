@@ -44,7 +44,7 @@ const StoryList = ({ fetchStories }) => {
         } else {
           if (result) {
             setStoryData(result.filter(story => isUserStory(story)));
-            setNarrowedData(result);
+            setNarrowedData(result.filter(story => isUserStory(story)));
           }
           setIsLoading(false);
         }

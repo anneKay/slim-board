@@ -9,7 +9,7 @@ import Footer from '../footer/footer';
 const RequireAuth = Component => ({ response }) => {
   return (
     <>
-      <Header />
+      <Header response={response} />
       {Object.keys(response.data).length > 0 || isLoggedIn ? (
         <Component />
       ) : (

@@ -57,6 +57,9 @@
     grid-area: storyListContainer;
     -ms-grid-column-span: 4;
     height: 100vh;
+    @media (max-width: 565px) {
+      grid-area: unset;
+    }
     .storyHeader {
       display: flex;
       flex-direction: row;
@@ -88,17 +91,9 @@
   grid-template-areas: 'storyListContainer storyListContainer storyListContainer storyListContainer storyListContainer';
 }
 .storyCardWrapper {
-  padding: 40px 25px 0;
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  min-width: 500px;
   .spinner-border {
     width: 5rem;
     height: 5rem;
+    margin: 15px 0 10px 40%;
   }
 }

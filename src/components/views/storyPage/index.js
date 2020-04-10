@@ -13,8 +13,6 @@ const StoryPage = () => {
         className={classNames('storyWrapper', { expandedStoryWrapper: !sideBarVisible })}
       >
         <SideBar sideBarVisible={sideBarVisible} setSideBarVisible={setSideBarVisible} />
-        {/* <section className="mainSection">
-      </section> */}
         <StoryList />
       </div>
     </>

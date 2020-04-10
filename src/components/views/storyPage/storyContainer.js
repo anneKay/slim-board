@@ -22,10 +22,10 @@ const StoryContainer = ({ stories }) => {
     }
   };
   return (
-    <>
+    <div className="cardContainer">
       {stories && stories.length > 0 ? (
         stories.map((story, index) => (
-          <div key={index}>
+          <>
             <Card
               border={showBorderColor(storyStatus.length > 0 ? storyStatus : story.status)}
               onClick={handleShow}
@@ -45,14 +45,14 @@ const StoryContainer = ({ stories }) => {
               setStoryStatus={setStoryStatus}
               storyStatus={storyStatus}
             />
-          </div>
+          </>
         ))
       ) : (
         <div>
           <h5> Sorry, there is nothing here!</h5>{' '}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
