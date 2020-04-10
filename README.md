@@ -1,3 +1,51 @@
+## About Slim Board
+
+Slim Board is a project management tool that enables users to create a ticket and have it reviewed by an admnin
+
+## Setup
+
+### Dependencies
+
+List of libraries and tools
+
+- [React.js](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Node.js](https://nodejs.org/en/) - A JavaScript runtime environment
+- [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps
+
+### Getting Started
+
+- Clone the repo - `git clone https://github.com/annekay/slim-board`
+- Change into the project directory
+- Install project dependencies run `yarn install`
+- Run the server `yarn start`
+
+## Description of Features
+
+### Users can sign in
+
+- A user can signin on the application by providing email and password
+
+### Admin can sign in
+
+- An admin can signin on the application by providing email and password
+  (To sign in as an admin, toggle the sign in button)
+
+### A User can create a story
+
+- A user can create a story by providing the following details
+  > - Summary
+  > - Description
+  > - Type
+  > - Complexity
+  > - Estimated time for completion
+  > - Cost associated to it
+
+### Admin can approve/reject a story
+
+An admin can view list of all stories and either approve or reject each of them
+
+### Users can view only the stories created by them
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
