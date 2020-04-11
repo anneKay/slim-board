@@ -8,10 +8,10 @@ import { fetchStories } from '../../../actions/storyActions';
 import { userData, isAdmin } from '../../../utils/helper';
 
 const StoryList = ({ fetchStories }) => {
-  const [storyData, setStoryData] = useState(false);
+  const [storyData, setStoryData] = useState('');
   const [isActive, setIsActive] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [narrowedData, setNarrowedData] = useState('');
+  const [storiesLoaded, setStoriesLoaded] = useState(false);
 
   const isUserStory = story => {
     return story.createdBy === userData.id;
@@ -33,25 +33,26 @@ const StoryList = ({ fetchStories }) => {
   };
 
   useEffect(() => {
-    if (!storyData) {
-      async function fetchData() {
-        const result = await fetchStories();
-        if (!result) setIsLoading('false');
-        if (isAdmin) {
-          setStoryData(result);
-          setNarrowedData(result);
-          setIsLoading(false);
-        } else {
-          if (result) {
-            setStoryData(result.filter(story => isUserStory(story)));
-            setNarrowedData(result.filter(story => isUserStory(story)));
-          }
-          setIsLoading(false);
-        }
+    if (!storiesLoaded) {
+      function fetchData() {
+        fetchStories()
+          .then(result => {
+            if (isAdmin && result) {
+              setStoryData(result);
+              setNarrowedData(result);
+            } else if (result) {
+              setStoryData(result.filter(story => isUserStory(story)));
+              setNarrowedData(result.filter(story => isUserStory(story)));
+            }
+            setStoriesLoaded(true);
+          })
+          .catch(() => {
+            setStoriesLoaded(true);
+          });
       }
       fetchData();
     }
-  }, [storyData]);
+  }, [storyData, storiesLoaded]);
 
   const headerList = ['Stories', 'Approved', 'Rejected'];
 
@@ -69,10 +70,10 @@ const StoryList = ({ fetchStories }) => {
         ))}
       </ul>
       <section className="storyCardWrapper">
-        {isLoading ? (
-          <Spinner animation="border" size="lg" variant="success" role="status"></Spinner>
-        ) : (
+        {storiesLoaded ? (
           <StoryContainer stories={narrowedData} />
+        ) : (
+          <Spinner animation="border" size="lg" variant="success" role="status"></Spinner>
         )}
       </section>
     </div>

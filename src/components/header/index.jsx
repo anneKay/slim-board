@@ -7,6 +7,7 @@ import '../../stylesheets/header.scss';
 
 const Header = ({ response }) => {
   const [mobileNavVisible, setMobileNavVisible] = useState(false);
+
   return (
     <>
       <div className="HeaderContainer">
@@ -21,7 +22,7 @@ const Header = ({ response }) => {
             {isLoggedIn && window.location.pathname !== '/login' && !isAdmin && (
               <a href="/create"> Create a Story</a>
             )}
-            {!response && !isLoggedIn && (
+            {window.location.pathname === '/login' && (
               <>
                 <a href="/login">Login</a>
                 <a href="/signup">Signup</a>
@@ -40,7 +41,7 @@ const Header = ({ response }) => {
                 ></img>{' '}
                 <p>
                   {(response && response.data.userRoles && response.data.userRoles[0]) ||
-                    userData.userRoles[0]}
+                    (userData.userRoles && userData.userRoles[0])}
                 </p>
               </div>
             )}
